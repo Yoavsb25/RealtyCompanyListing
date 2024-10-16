@@ -1,0 +1,1010 @@
+/* Global Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --text-color: #333;
+    --light-gray: #f5f6fa;
+    --medium-gray: #95a5a6;
+    --border-color: #dcdde1;
+    --font-main: 'Arial', sans-serif;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Layout Components */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.main-container {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem auto;
+}
+
+/* Header Styles */
+header {
+    background-color: white;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.logo {
+    margin-left: 105px;
+    height: 100px;
+    width: 100px;
+    justify-content: space-around;
+}
+
+/* Navigation Styles */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Sidebar Styles */
+
+.sidebar h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.sidebar {
+    flex: 0 0 300px;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.sidebar .btn {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons img {
+    width: 35px;
+    height: 35px;
+    transition: var(--transition);
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    transition: var(--transition);
+}
+.social-icons a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.social-icons a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* Main Content Styles */
+.content {
+    flex: 1;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    min-height: auto;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-control-file {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-control-file:hover {
+    border-color: var(--secondary-color);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-grid;
+    margin-top: 1rem; /* Space above the button */
+    padding: 0.5rem 1rem; /* Padding inside the button */
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    width: 300px;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--primary-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Table Styles */
+.data-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+}
+/* Action buttons */
+.data-table td .btn {
+    display: inline-block;
+    width: auto;
+    min-width: 80px; /* Set a consistent minimum width for buttons */
+    margin: 0 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem; /* Slightly smaller font size for table buttons */
+}
+.data-table td form {
+    display: inline-block;
+}
+
+.data-table tr:hover {
+    background-color: var(--light-gray);
+}
+
+/* Admin Dashboard Styles */
+.dashboard-title {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-nav {
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Property Form Styles */
+.property-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.page-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Image Upload Styles */
+
+.image-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-upload-area:hover {
+    border-color: var(--secondary-color);
+    background-color: var(--light-gray);
+}
+
+.image-upload-icon {
+    font-size: 2rem;
+    color: var(--medium-gray);
+    margin-bottom: 1rem;
+}
+
+.image-upload-input {
+    display: none;
+}
+
+/* Image Preview Styles */
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.image-preview img {
+    width: 150px;  /* Fixed width for preview images */
+    height: 150px; /* Fixed height for preview images */
+    object-fit: cover; /* This ensures the image covers the area without distortion */
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+}
+.image-preview img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Image Gallery Styles */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.image-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-actions {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.image-item:hover .image-actions {
+    opacity: 1;
+}
+
+.image-action-btn {
+    background: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 0.25rem;
+    cursor: pointer;
+}
+
+.image-action-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Property Listings Styles */
+.search-filter-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.search-filter-form fieldset {
+    border: none;
+}
+
+.search-filter-form legend {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    width: 100%;
+}
+
+.search-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+.search-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-group label {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.search-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.search-group input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.search-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.search-group input[type="number"]::-webkit-outer-spin-button,
+.search-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-search,
+.btn-reset {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    flex: 1;
+    font-size: inherit;
+}
+
+.btn-search {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-reset {
+    background-color: var(--light-gray);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-search:hover,
+.btn-reset:hover {
+    transform: translateY(-2px);
+}
+
+.btn-search:hover {
+    background-color: var(--primary-color);
+}
+
+.btn-reset:hover {
+    background-color: var(--border-color);
+}
+
+.search-results {
+    margin-top: 1rem;
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+}
+
+#property-listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.property-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    height: 100%;  /* Ensure all cards take full height of their grid cell */
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.property-card a {
+    flex: 1;  /* Allow the link to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.property-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.property-card-content {
+    flex: 1;  /* Allow content to grow and push buttons to bottom */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.property-detail {
+    display: flex; /* Use flexbox for layout */
+    gap: 2rem; /* Space between the items */
+    margin: 2rem 0; /* Margin around the detail section */
+}
+
+.property-image {
+    flex: 1; /* Allow the image section to grow */
+}
+
+.property-image img {
+    width: 100%; /* Responsive image */
+    border-radius: 5px; /* Optional: rounded corners for the image */
+    object-fit: cover; /* Ensure the image covers the div */
+}
+
+.property-info {
+    flex: 1; /* Allow both info sections to grow equally */
+    padding: 1rem; /* Padding inside the info boxes */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 5px; /* Optional: rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.property-info h2 {
+    margin-top: 0; /* Remove default margin from the top of headings */
+}
+
+.property-price {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.property-features {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;  /* Push features to bottom of content area */
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+    padding-top: 1rem;
+}
+.btn-container {
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.btn-container form {
+    flex: 1;
+}
+
+.btn-container .btn {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Profile Page Styles */
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.property-detail {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.property-info-container {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below its content size */
+}
+
+.property-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.property-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.info-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.info-section p {
+    margin-bottom: 0.5rem;
+}
+
+.property-image-gallery {
+    max-width: 500px;
+    margin-top: 70px
+}
+
+.main-image {
+    width: 100%;
+    height: 200px; /* Height similar to property card image */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.thumbnail {
+    flex: 0 0 auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 1rem;
+}
+.document-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px 0;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+}
+
+.document-link:hover {
+    background-color: #e5e5e5;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Utility Classes */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge-admin {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.badge-user {
+    background-color: var(--medium-gray);
+    color: white;
+}
+
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.form-group-hint {
+    font-size: 0.875rem;
+    color: var(--medium-gray);
+    margin-top: 0.25rem;
+}
+
+.edit-user-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.edit-user-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox {
+    margin-right: 0.5rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.dashboard-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+       .social-icons {
+        justify-content: flex-start;
+    }
+
+    .sidebar h3 {
+        text-align: left;
+    }
+
+     .image-preview img {
+        width: 100px;
+        height: 100px;
+    }
+
+        .btn-container {
+        flex-direction: column;
+    }
+
+    .btn-container form {
+        width: 100%;
+    }
+
+    .search-filter-form {
+        padding: 1rem;
+    }
+
+    .search-buttons {
+        flex-direction: column;
+    }
+
+    .btn-search,
+    .btn-reset {
+        width: 100%;
+    }
+
+     .btn-group {
+        flex-direction: column;
+    }
+    .search-row,
+    #property-listings,
+    .property-card .btn-container,
+    .form-grid,
+    .form-actions,
+    .btn-group {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-property-container,
+    .profile-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .data-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .data-table th,
+    .data-table td {
+        min-width: 120px;
+    }
+    .data-table td .btn {
+        display: block;
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+
+    .data-table td {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Ensure consistent cell widths for the Actions column */
+.data-table th:last-child,
+.data-table td:last-child {
+    width: 200px; /* Set a fixed width for the Actions column */
+    white-space: nowrap;
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Animations */
+@keyframes button-loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-primary.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-primary.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: button-loading 0.6s linear infinite;
+}

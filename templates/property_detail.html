@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="content">
+    <div class="property-detail">
+        <div class="property-info-container">
+            <h1 class="property-title">{{ property.name }}</h1>
+            <div class="property-info">
+                <div class="info-section">
+                    <h2>Property Details</h2>
+                    <p><strong>Description:</strong> {{ property.description }}</p>
+                    <p><strong>Location:</strong> {{ property.location }}</p>
+                    <p><strong>Price:</strong> ${{ property.price }} / month</p>
+                    <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+                    <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+                    <p><strong>Square Footage:</strong> {{ property.square_footage }} sq ft</p>
+                </div>
+                <div class="info-section">
+                    <h2>Financial Overview</h2>
+                    <p><strong>Tenants:</strong> {{ property.tenants }}</p>
+                    <p><strong>Buying Price:</strong> ${{ property.buying_price }}</p>
+                    <p><strong>Year Bought:</strong> {{ property.year_bought }}</p>
+                    <p><strong>Current Rent:</strong> ${{ property.price }} / month</p>
+                    <p><strong>Current Value:</strong> ${{ property.current_value }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% if property.images %}
+        <div class="property-image-gallery">
+            <div class="main-image">
+                <img id="mainImage" src="{{ url_for('static', filename='uploads/' ~ property.images[0]) }}" alt="{{ property.name }} main image">
+            </div>
+            {% if property.images|length > 1 %}
+            <div class="thumbnail-gallery">
+                {% for image in property.images %}
+                <div class="thumbnail" onclick="changeMainImage('{{ url_for('static', filename='uploads/' ~ image) }}')">
+                    <img src="{{ url_for('static', filename='uploads/' ~ image) }}" alt="{{ property.name }} thumbnail">
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if property.files %}
+        <div class="property-files">
+            <h2>Related Documents</h2>
+            <ul class="file-list">
+                {% for file in property.files %}
+                <li>
+                    <a href="{{ url_for('download_file', file_id=file.id) }}" target="_blank" class="document-link">
+                        {{ file.original_filename }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <a href="{{ url_for('properties') }}" class="btn btn-primary">Back to Listings</a>
+</main>
+
+<script>
+function changeMainImage(newSrc) {
+    document.getElementById('mainImage').src = newSrc;
+}
+</script>
+{% endblock %}

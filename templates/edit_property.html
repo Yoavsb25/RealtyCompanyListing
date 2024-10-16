@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Property{% endblock %}
+
+{% block content %}
+<div class="edit-property-container">
+    <div class="edit-header">
+        <h1 class="edit-title">Edit Property</h1>
+    </div>
+
+    <form action="{{ url_for('edit_property', property_id=property.id) }}" method="POST" enctype="multipart/form-data" class="property-form">
+        {{ form.hidden_tag() }}
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name">Property Name</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ property.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" class="form-control" value="{{ property.price }}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" required>{{ property.description }}</textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" class="form-control" value="{{ property.location }}" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="bedrooms">Bedrooms</label>
+                <input type="number" id="bedrooms" name="bedrooms" class="form-control" value="{{ property.bedrooms }}" required>
+            </div>
+            <div class="form-group">
+                <label for="bathrooms">Bathrooms</label>
+                <input type="number" id="bathrooms" name="bathrooms" class="form-control" value="{{ property.bathrooms }}" required>
+            </div>
+            <div class="form-group">
+                <label for="square_footage">Square Footage</label>
+                <input type="number" id="square_footage" name="square_footage" class="form-control" value="{{ property.square_footage }}" required>
+            </div>
+        </div>
+
+        <div class="property-images">
+            <h3>Property Images</h3>
+            <div class="image-grid" id="imageGrid">
+                {% for image in property.images %}
+                <div class="image-item" data-image-id="{{ image }}">
+                    <img src="{{ url_for('static', filename='uploads/' ~ image) }}" alt="Property image">
+                    <button type="button" class="btn btn-danger image-delete">Delete</button>
+                    <button type="button" class="btn btn-secondary image-undo" style="display: none;">Undo</button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="new_images">Upload New Images</label>
+            <input type="file" id="new_images" name="new_images[]" class="form-control-file" multiple accept="image/*">
+            <div id="newImagePreview" class="image-preview"></div>
+        </div>
+
+        <div class="property-files">
+            <h3>Property Files</h3>
+            <div class="file-list">
+                {% for file in property.files %}
+                <div class="file-item" data-file-id="{{ file.id }}">
+                    <span class="file-name">{{ file.original_filename }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="new_files">Upload New Files</label>
+            <input type="file" id="new_files" name="new_files[]" class="form-control-file" multiple>
+            <div class="form-group-hint">Upload additional files (allowed formats: pdf, doc, docx, txt)</div>
+        </div>
+
+        <!-- Hidden inputs to store deleted image and file IDs -->
+        <input type="hidden" id="deletedImages" name="deleted_images" value="">
+        <input type="hidden" id="deletedFiles" name="deleted_files" value="">
+
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="dashboard-title">Admin Dashboard</h1>
+
+<nav class="admin-nav">
+    <ul class="nav-list">
+        <li><a href="#users" class="nav-link">Manage Users</a></li>
+        <li><a href="#properties" class="nav-link">Manage Properties</a></li>
+    </ul>
+</nav>
+
+<section id="users" class="section">
+    <h2 class="section-title">Users</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ 'Yes' if user.is_admin else 'No' }}</td>
+                <td>
+                    <a href="{{ url_for('edit_user', user_id=user.id) }}" class="btn btn-secondary">Edit</a>
+                    <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section id="properties" class="section">
+    <h2 class="section-title">Properties</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+            <tr>
+                <td>{{ property.name }}</td>
+                <td>${{ property.price }}</td>
+                <td>{{ property.location }}</td>
+                <td>
+                    <a href="{{ url_for('edit_property', property_id=property.id) }}" class="btn btn-secondary">Edit</a>
+                    <form action="{{ url_for('delete_property', property_id=property.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

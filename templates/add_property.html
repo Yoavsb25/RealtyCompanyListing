@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Property{% endblock %}
+
+{% block content %}
+<h2 class="page-title">Add New Property</h2>
+<form method="POST" enctype="multipart/form-data" action="{{ url_for('add_property') }}" class="property-form">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        <label for="{{ form.name.id }}">{{ form.name.label }}</label>
+        {{ form.name(class="form-control", size=20) }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.description.id }}">{{ form.description.label }}</label>
+        {{ form.description(class="form-control", rows=5, cols=30) }}
+        <div class="form-group-hint">Provide a detailed description of the property, including key features and selling points.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.price.id }}">{{ form.price.label }}</label>
+        {{ form.price(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.location.id }}">{{ form.location.label }}</label>
+        {{ form.location(class="form-control", size=20) }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.bedrooms.id }}">{{ form.bedrooms.label }}</label>
+        {{ form.bedrooms(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.bathrooms.id }}">{{ form.bathrooms.label }}</label>
+        {{ form.bathrooms(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.square_footage.id }}">{{ form.square_footage.label }}</label>
+        {{ form.square_footage(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.tenants.id }}">{{ form.tenants.label }}</label>
+        {{ form.tenants(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.buying_price.id }}">{{ form.buying_price.label }}</label>
+        {{ form.buying_price(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.year_bought.id }}">{{ form.year_bought.label }}</label>
+        {{ form.year_bought(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.current_value.id }}">{{ form.current_value.label }}</label>
+        {{ form.current_value(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.images.id }}">Property Images</label>
+        {{ form.images(class="form-control-file", multiple=True, id="imageUpload") }}
+        <div class="form-group-hint">Upload property images (allowed formats: png, jpg, jpeg, gif)</div>
+        <div id="imagePreviewContainer" class="image-preview"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.files.id }}">Additional Files</label>
+        {{ form.files(class="form-control-file", multiple=True, id="fileUpload") }}
+        <div class="form-group-hint">Upload additional files (allowed formats: pdf, doc, docx, txt)</div>
+        <div id="fileListContainer"></div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+    </div>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle image uploads
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+    imageUpload.addEventListener('change', function(e) {
+        imagePreviewContainer.innerHTML = ''; // Clear existing previews
+
+        if (this.files.length > 0) {
+            for (const file of this.files) {
+                if (!file.type.startsWith('image/')) continue;
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'preview-image-container';
+
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.alt = 'Property image preview';
+
+                    imgContainer.appendChild(img);
+                    imagePreviewContainer.appendChild(imgContainer);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    // Handle file uploads
+    const fileUpload = document.getElementById('fileUpload');
+    const fileListContainer = document.getElementById('fileListContainer');
+
+    fileUpload.addEventListener('change', function(e) {
+        fileListContainer.innerHTML = ''; // Clear existing list
+
+        if (this.files.length > 0) {
+            const list = document.createElement('ul');
+            list.className = 'file-list';
+
+            for (const file of this.files) {
+                const li = document.createElement('li');
+                li.textContent = file.name;
+                list.appendChild(li);
+            }
+
+            fileListContainer.appendChild(list);
+        }
+    });
+
+    // Form submission handling
+    const form = document.querySelector('.property-form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect;
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form.');
+        });
+    });
+});
+</script>
+{% endblock %}

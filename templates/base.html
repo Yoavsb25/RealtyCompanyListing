@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Our Realty Company Logo" class="logo">
+            <h1>Diana & Yoav's Realty Company</h1>
+            <nav>
+                <ul>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                        {% if current_user.is_admin %}
+                            <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+                            <li><a href="{{ url_for('add_property') }}">Add Property</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="btn">Home</a></li>
+                <li><a href="{{ url_for('properties') }}" class="btn">Our Properties</a></li>
+                <li><a href="{{ url_for('under_construction') }}" class="btn">Meet the Team</a></li>
+                <li><a href="{{ url_for('under_construction') }}" class="btn">News & Updates</a></li>
+            </ul>
+
+
+
+            <div class="sidebar-section">
+                <div class="social-icons">
+                    <a href="#" title="Follow us on Facebook">
+                        <img src="{{ url_for('static', filename='img/facebook-icon.png') }}" alt="Facebook">
+                    </a>
+                    <a href="#" title="Connect with us on LinkedIn">
+                        <img src="{{ url_for('static', filename='img/linkedin-icon.png') }}" alt="LinkedIn">
+                    </a>
+                    <a href="#" title="Follow us on X (Twitter)">
+                        <img src="{{ url_for('static', filename='img/x-icon.png') }}" alt="X (Twitter)">
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+    <footer>
+            <p>Email: Diana.coh@gmail.com </p>
+            <p>&copy; 2024 Diana & Yoav's Realty Company. All rights reserved</p>
+    </footer>
+
+</body>
+</html>
